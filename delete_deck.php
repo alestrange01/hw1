@@ -14,11 +14,11 @@
 
     $deckid = mysqli_real_escape_string($conn, $_GET['deckid']);
 
-    $query = "DELETE FROM composizione WHERE deck = $deckid";
+    $query = "DELETE FROM compositions WHERE deck = $deckid";
     $res = mysqli_query($conn, $query); 
 
     if (mysqli_affected_rows($conn) > 0) {
-        $query = "DELETE FROM deck WHERE id = $deckid";
+        $query = "DELETE FROM decks WHERE id = $deckid";
         $res = mysqli_query($conn, $query);
         if (mysqli_affected_rows($conn) == 0) {
             echo json_encode(array('status' => 'error'));

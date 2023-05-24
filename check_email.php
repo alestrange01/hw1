@@ -13,7 +13,7 @@
     header('Content-Type: application/json');
     $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['db']);
     $email = mysqli_real_escape_string($conn, $_GET["q"]);
-    $query = "SELECT email FROM user WHERE email = '$email'";
+    $query = "SELECT email FROM users WHERE email = '$email'";
     $res = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
     //restituisco un json che contiene un booleano che indica se l'email è già in uso

@@ -16,7 +16,7 @@
         $password = mysqli_real_escape_string($conn, $_POST['password']);
 
         // Permette l'accesso sia inserendo l'email che il player tag: entrambi sono univoci e devono corrisspondere alla stessa password
-        $query = "SELECT * FROM user WHERE email = '$email_tag' OR player_tag = '$email_tag'";
+        $query = "SELECT * FROM users WHERE email = '$email_tag' OR player_tag = '$email_tag'";
         $res = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
         if (mysqli_num_rows($res) > 0) {

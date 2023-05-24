@@ -16,7 +16,7 @@
     $player_tag = mysqli_real_escape_string($conn, $_GET["q"]);
 
     // Controllo che il player_tag non sia già in uso
-    $query = "SELECT username FROM user WHERE player_tag = '$player_tag'";
+    $query = "SELECT username FROM users WHERE player_tag = '$player_tag'";
     $res = mysqli_query($conn, $query) or die(mysqli_error($conn));
     $exists = mysqli_num_rows($res) > 0 ? true : false;
     mysqli_free_result($res);

@@ -33,7 +33,7 @@
                 <h1 id="logotitle">StrangeRoyale</h1>
                 <p id="logosubtitle">play, have fun, compete</p>
             </div>
-            <a href='http://localhost/hw4/home.php'>Home </a>
+            <a href='http://localhost/hw4/home.php'><u>Home</u></a>
             <a href='http://localhost/hw4/deck_creator.php'>Deck Creator</a>
             <a href='http://localhost/hw4/players.php'>Players</a>
             <a href='http://localhost/hw4/clans.php'>Clans</a>

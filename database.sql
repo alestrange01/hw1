@@ -279,17 +279,17 @@ VALUES
 
 /*
 SCHEMA DB StrangeRoyale
-User(ID, player_tag, name, surname, username, email, password)
-Card(ID, name, Cost, Health_Shield, Damage, Hit_Speed, Dps, Spawn_Death_Damage, Attack_Range, Spawn_Count)
-Deck(ID, title, User)		
-     FK: User -> User(ID)
+User(id, player_tag, name, surname, username, email, password)
+Card(id, name, Cost, Health_Shield, Damage, Hit_Speed, Dps, Spawn_Death_Damage, Attack_Range, Spawn_Count)
+Deck(id, title, User)		
+     FK: User -> User(id)
 Composizione(Deck, Card)
-     FK: Deck -> Deck(ID)
-     FK: Card -> Card(ID)
+     FK: Deck -> Deck(id)
+     FK: Card -> Card(id)
 */
 
 
-CREATE TABLE card(
+CREATE TABLE cards(
 	id integer primary key,
 	Name VARCHAR(64),
 	Cost VARCHAR(32),
@@ -302,7 +302,7 @@ CREATE TABLE card(
 	SpawnCount VARCHAR(32)
 );
 
-CREATE TABLE user(
+CREATE TABLE users(
 	id integer primary key auto_increment,
     player_tag varchar(16) not null unique,
     name varchar(255) not null,
@@ -312,31 +312,31 @@ CREATE TABLE user(
     password varchar(255) not null
 );
 
-CREATE TABLE deck(
+CREATE TABLE decks(
 	id integer primary key auto_increment,
     title varchar(64),
     user integer not null,
     index ind_u (user),
-    foreign key (user) references user(id)
+    foreign key (user) references users(id)
 );
 
- CREATE TABLE composizione(
+ CREATE TABLE compositions(
 	deck int not null,
     card int not null,
     index ind_d (deck),
     index ind_u (card),
-    foreign key (deck) references deck(id),
-    foreign key (card) references card(id)
+    foreign key (deck) references decks(id),
+    foreign key (card) references cards(id)
 );
     
 
 
 
 
-drop table card;
+drop table cards;
 drop table user;
-drop table deck;
-drop table composizione;
+drop table decks;
+drop table compositions;
 
 
 
@@ -464,7 +464,7 @@ SELECT email FROM users WHERE email = 'ale@gmail.com';
 
 
 SELECT * 
-FROM Deck AS d 
+FROM Decks AS d 
 INNER JOIN Composizione AS c ON d.id = c.deck INNER JOIN card on c.card = card.id
 WHERE c.card IN ("26000019","26000020","26000021","26000022","26000023","26000042","26000074","26000085") 
 AND d.user = '3' 

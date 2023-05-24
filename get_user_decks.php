@@ -12,7 +12,7 @@
 
     $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['db']) or die(mysqli_error($conn));
 
-    $query = "SELECT * FROM deck WHERE user = $userid";
+    $query = "SELECT * FROM decks WHERE user = $userid";
     $res = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
     if (mysqli_num_rows($res) == 0) {
@@ -23,7 +23,7 @@
     $decks = array('status' => 'ok', 'decks' => array());
     while($row = mysqli_fetch_assoc($res)) {
         //prendo l'array delle carte associate al deck
-        $query = "SELECT card FROM composizione WHERE deck = " . $row['id'];
+        $query = "SELECT card FROM compositions WHERE deck = " . $row['id'];
         $res2 = mysqli_query($conn, $query);
         $cards = array();
         while($row2 = mysqli_fetch_assoc($res2)) {

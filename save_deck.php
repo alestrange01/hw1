@@ -18,7 +18,7 @@
         $title = mysqli_real_escape_string($conn, $_POST['title']);
 
         //controllo che l'utente non abbia gia salvato un deck con lo stesso titolo
-        $query = "SELECT * FROM deck WHERE user = '$userid' AND title = '$title'";
+        $query = "SELECT * FROM decks WHERE user = '$userid' AND title = '$title'";
         $res = mysqli_query($conn, $query) or die(mysqli_error($conn));
         if(mysqli_num_rows($res) > 0){
             echo json_encode(array('status' => 'error', 'error' => 'title'));
@@ -35,7 +35,7 @@
         $placeholders = implode(',', $escapedCards);
 
 
-        $query = "SELECT d.id FROM Deck AS d INNER JOIN Composizione AS c ON d.id = c.deck WHERE c.card IN ($placeholders) AND d.user = '$userid' GROUP BY d.id HAVING COUNT(DISTINCT c.card) = " . count($cards); 
+        $query = "SELECT d.id FROM Decks AS d INNER JOIN Compositions AS c ON d.id = c.deck WHERE c.card IN ($placeholders) AND d.user = '$userid' GROUP BY d.id HAVING COUNT(DISTINCT c.card) = " . count($cards); 
         $res = mysqli_query($conn, $query) or die(mysqli_error($conn));
         if(mysqli_num_rows($res) > 0){
             echo json_encode(array('status' => 'error', 'error' => 'cards'));
@@ -45,7 +45,7 @@
 
         $conn->autocommit(false); //Disabilito l'autocommit per avviare la transazione
 
-        $query = "INSERT INTO deck (user, title) VALUES ('$userid', '$title')";
+        $query = "INSERT INTO decks (user, title) VALUES ('$userid', '$title')";
         $res = mysqli_query($conn, $query) or die(mysqli_error($conn));
         if($res){
             $deckid = mysqli_insert_id($conn);
@@ -54,7 +54,7 @@
             $success = true;
             foreach($cards as $card){
                 $card = mysqli_real_escape_string($conn, $card);
-                $query = "INSERT INTO composizione (deck, card) VALUES ('$deckid', '$card')";
+                $query = "INSERT INTO Compositions (deck, card) VALUES ('$deckid', '$card')";
                 $res = mysqli_query($conn, $query) or die(mysqli_error($conn));
                 if(!$res){
                     $success = false;

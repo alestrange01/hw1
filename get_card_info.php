@@ -6,7 +6,7 @@
     require_once 'dbconfig.php';
     $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['db']);
     $card = mysqli_real_escape_string($conn, $_GET["q"]);
-    $query = "SELECT * FROM card WHERE id = '$card'";
+    $query = "SELECT * FROM cards WHERE id = '$card'";
     $res = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
     //restituisco il json che contiene le informazioni della carta

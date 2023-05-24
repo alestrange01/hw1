@@ -1,10 +1,16 @@
 
 .deck-block{
-    width: 80%;
+    width: 60%;
     display: flex;
     align-items: center;
     flex-direction: column;
     margin-bottom: 25px;
+}
+
+@media (max-width: 580px){
+    .deck-block{
+        width: 85%;
+    }
 }
 
 .deck-block div img{
@@ -14,6 +20,16 @@
 .deck-block h1{
     text-align: center;
     margin-bottom: 10px;
+}
+
+.deck-block div:nth-child(1) { 
+    display: flex;
+}
+
+.edit-icon{
+    width: 25px !important;
+    margin-bottom: -6px;
+    cursor: pointer;
 }
 
 

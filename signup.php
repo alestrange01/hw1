@@ -42,7 +42,7 @@
         }else{
             //controllo che l'email non sia già in uso
             $email = mysqli_real_escape_string($conn, strtolower($_POST['email']));
-            $query = "SELECT email FROM user WHERE email = '$email'";
+            $query = "SELECT email FROM users WHERE email = '$email'";
             $res = mysqli_query($conn, $query) or die(mysqli_error($conn));
             if (mysqli_num_rows($res) > 0) {
                 $error[] = "Email già in uso";
@@ -55,7 +55,7 @@
         }else{
             //controllo che il player tag non sia già in uso
             $player_tag = mysqli_real_escape_string($conn, $_POST['player_tag']);
-            $query = "SELECT player_tag FROM user WHERE player_tag = '$player_tag'";
+            $query = "SELECT player_tag FROM users WHERE player_tag = '$player_tag'";
             $res = mysqli_query($conn, $query) or die(mysqli_error($conn));
             if (mysqli_num_rows($res) > 0) {
                 $error[] = "Player tag già in uso";
@@ -104,7 +104,7 @@
             $password = password_hash($password, PASSWORD_BCRYPT);
             //password_hash è una funzione che permette di criptare la password, in questo caso con l'algoritmo bcrypt
             //https://www.php.net/manual/en/function.password-hash.php
-            $query = "INSERT INTO user(player_tag, name, surname, username, email, password) VALUES('$player_tag', '$name', '$surname', '$username', '$email', '$password')";
+            $query = "INSERT INTO users(player_tag, name, surname, username, email, password) VALUES('$player_tag', '$name', '$surname', '$username', '$email', '$password')";
 
             
 

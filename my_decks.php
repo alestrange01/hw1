@@ -57,7 +57,7 @@
             </label>
         </div>  
         <div id="burger-menu-links">
-        <a href="http://localhost/hw4/home.php"><img src="images/home.svg" alt=""></a>
+            <a href="http://localhost/hw4/home.php"><img src="images/home.svg" alt=""></a>
             <a href="http://localhost/hw4/deck_creator.php"><img src="images/deck_creator.svg" alt=""></a>
             <a href="http://localhost/hw4/players.php"><img src="images/players.svg" alt=""></a>
             <a href="http://localhost/hw4/clans.php"><img src="images/clans.svg" alt=""></a>
