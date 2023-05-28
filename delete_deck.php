@@ -14,7 +14,7 @@
 
     $deckid = mysqli_real_escape_string($conn, $_GET['deckid']);
 
-    $query = "DELETE FROM compositions WHERE deck = $deckid";
+    $query = "DELETE FROM card_deck WHERE deck_id = $deckid";
     $res = mysqli_query($conn, $query); 
 
     if (mysqli_affected_rows($conn) > 0) {

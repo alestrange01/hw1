@@ -50,7 +50,7 @@
   <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>StrangeRoyaleSingIn</title>
+      <title>StrangeRoyale Log In</title>
       <link rel="stylesheet" href="signup.css"/>
       <link rel="stylesheet" href="footer.css">
       <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -96,7 +96,7 @@
                 <p>Not a member? <a href="http://localhost/hw4/signup.php">Sign Up</a></p>
             </form>
             <div class="form-section">
-                <a href="">Forgot password?</a> 
+                <a href="https://www.youtube.com/shorts/ZRF2071HZRU">Forgot password?</a> 
             </div>
         </div>
 
@@ -151,6 +151,9 @@
               </div>
             </nav>
         </footer>
+
+
+        
 
         
     </body>

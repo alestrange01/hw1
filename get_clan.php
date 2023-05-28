@@ -35,7 +35,8 @@
     $badges = file_get_contents($url);
     if ($badges === false) {
         // Si è verificato un errore durante il recupero del JSON
-        echo '<p>Failed to retrieve JSON data.</p>';
+        $response = array("exists" => false);
+        echo json_encode($response);
         exit;
     } else {
         // Il JSON è stato recuperato con successo

@@ -279,13 +279,13 @@ VALUES
 
 /*
 SCHEMA DB StrangeRoyale
-User(id, player_tag, name, surname, username, email, password)
-Card(id, name, Cost, Health_Shield, Damage, Hit_Speed, Dps, Spawn_Death_Damage, Attack_Range, Spawn_Count)
-Deck(id, title, User)		
-     FK: User -> User(id)
-Composizione(Deck, Card)
-     FK: Deck -> Deck(id)
-     FK: Card -> Card(id)
+users(id, player_tag, name, surname, username, email, password)
+cards(id, name, Cost, Health_Shield, Damage, Hit_Speed, Dps, Spawn_Death_Damage, Attack_Range, Spawn_Count)
+decks(id, title, user)		
+     FK: user -> users(id)
+compositions(deck, card)
+     FK: deck -> decks(id)
+     FK: card -> cards(id)
 */
 
 
@@ -320,13 +320,14 @@ CREATE TABLE decks(
     foreign key (user) references users(id)
 );
 
- CREATE TABLE compositions(
-	deck int not null,
-    card int not null,
-    index ind_d (deck),
-    index ind_u (card),
-    foreign key (deck) references decks(id),
-    foreign key (card) references cards(id)
+ CREATE TABLE card_deck(
+	deck_id int not null,
+    card_id int not null,
+    primary key (deck_id, card_id),
+    index ind_d (deck_id),
+    index ind_u (card_id),
+    foreign key (deck_id) references decks(id),
+    foreign key (card_id) references cards(id)
 );
     
 
@@ -336,7 +337,7 @@ CREATE TABLE decks(
 drop table cards;
 drop table user;
 drop table decks;
-drop table compositions;
+drop table card_deck;
 
 
 
@@ -465,23 +466,23 @@ SELECT email FROM users WHERE email = 'ale@gmail.com';
 
 SELECT * 
 FROM Decks AS d 
-INNER JOIN Composizione AS c ON d.id = c.deck INNER JOIN card on c.card = card.id
+INNER JOIN compositions AS c ON d.id = c.deck INNER JOIN card on c.card = card.id
 WHERE c.card IN ("26000019","26000020","26000021","26000022","26000023","26000042","26000074","26000085") 
 AND d.user = '3' 
 GROUP BY d.id
 HAVING COUNT(DISTINCT c.card) = 8;
 
 SELECT * 
-FROM Deck AS d  INNER JOIN Composizione AS c ON d.id = c.deck
+FROM Deck AS d  INNER JOIN compositions AS c ON d.id = c.deck
 where d.user = '3';
 
 
 select * from deck;
-select * from composizione;
+select * from compositions;
 
 start transaction;
 
 delete from deck where id = 3;
-delete from composizione where deck = 3;
+delete from compositions where deck = 3;
 
 rollback;

@@ -16,8 +16,8 @@
     curl_close($ch);
     $data = json_decode($res, true);
     if (isset($data["reason"])) {
-        echo "<p>", "Failed: ", $data["reason"], " : ", isset($data["message"]) ? $data["message"] : "", "</p></body></html>";
-        exit;
+        $response = array("exists" => false);
+        return json_encode($response);
     }
     echo json_encode($data);
     

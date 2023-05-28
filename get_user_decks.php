@@ -23,11 +23,11 @@
     $decks = array('status' => 'ok', 'decks' => array());
     while($row = mysqli_fetch_assoc($res)) {
         //prendo l'array delle carte associate al deck
-        $query = "SELECT card FROM compositions WHERE deck = " . $row['id'];
+        $query = "SELECT card_id FROM card_deck WHERE deck_id = " . $row['id'];
         $res2 = mysqli_query($conn, $query);
         $cards = array();
         while($row2 = mysqli_fetch_assoc($res2)) {
-            $cards[] = $row2['card'];
+            $cards[] = $row2['card_id'];
         }
         
         $deck = array('id' => $row['id'], 'title' => $row['title'], 'cards' => $cards);

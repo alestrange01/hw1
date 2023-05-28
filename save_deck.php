@@ -32,10 +32,10 @@
         $escapedCards = array_map(function($card) use ($conn) {
                                     return "'" . mysqli_real_escape_string($conn, $card) . "'";
                         }, $cards);
-        $placeholders = implode(',', $escapedCards);
+        $usedcards = implode(',', $escapedCards);
 
 
-        $query = "SELECT d.id FROM Decks AS d INNER JOIN Compositions AS c ON d.id = c.deck WHERE c.card IN ($placeholders) AND d.user = '$userid' GROUP BY d.id HAVING COUNT(DISTINCT c.card) = " . count($cards); 
+        $query = "SELECT d.id FROM Decks AS d INNER JOIN card_deck AS c ON d.id = c.deck_id WHERE c.card_id IN ($usedcards) AND d.user = '$userid' GROUP BY d.id HAVING COUNT(DISTINCT c.card_id) = " . count($cards); 
         $res = mysqli_query($conn, $query) or die(mysqli_error($conn));
         if(mysqli_num_rows($res) > 0){
             echo json_encode(array('status' => 'error', 'error' => 'cards'));
@@ -54,7 +54,7 @@
             $success = true;
             foreach($cards as $card){
                 $card = mysqli_real_escape_string($conn, $card);
-                $query = "INSERT INTO Compositions (deck, card) VALUES ('$deckid', '$card')";
+                $query = "INSERT INTO card_deck (deck_id, card_id) VALUES ('$deckid', '$card')";
                 $res = mysqli_query($conn, $query) or die(mysqli_error($conn));
                 if(!$res){
                     $success = false;
