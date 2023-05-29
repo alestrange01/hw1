@@ -138,7 +138,7 @@
   <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>StrangeRoyaleSignUp</title>
+      <title>StrangeRoyale Sign Up</title>
       <link rel="stylesheet" href="signup.css"/>
       <link rel="stylesheet" href="footer.css">
       <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
